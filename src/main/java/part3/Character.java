@@ -1,61 +1,79 @@
 package part3;
 
-import java.util.ArrayList;
-import java.util.List;
-
-class Character {
+public class Character {
     private String name;
     private CharacterState state;
-    private boolean isBeingPulled;
-    private Character pulledBy;
-    private List<String> actionLog;
+    private Spaceship currentSpaceship;  // Link back to spaceship
 
     public Character(String name) {
         this.name = name;
         this.state = CharacterState.NORMAL;
-        this.isBeingPulled = false;
-        this.pulledBy = null;
-        this.actionLog = new ArrayList<>();
     }
 
-    public void grabHand(Character other) {
-        actionLog.add(name + " grabbed " + other.getName() + "'s hand");
-        other.setBeingPulled(true, this);
+    public Character() {
+        this.state = CharacterState.NORMAL;
     }
 
-    public void pullTowards(Door door) {
-        if (isBeingPulled) {
-            actionLog.add(name + " is being pulled towards " + door.getId());
-            door.setBeingOpened(true);
+    public void board(Spaceship spaceship) {
+        if (spaceship.addCharacter(this)) {  // Add character to spaceship
+            this.currentSpaceship = spaceship;  // Set reference to spaceship
+            System.out.println(this.name + " boarded the spaceship");
         }
     }
 
-    public void becomeHypnotized(Rodent rodent) {
-        if (rodent.getState() == RodentState.HYPNOTIZING) {
-            this.state = CharacterState.HYPNOTIZED;
-            actionLog.add(name + " became hypnotized by " + rodent.getType());
+    public void leaveSpaceship() {
+        if (currentSpaceship != null) {
+            currentSpaceship.removeCharacter(this);
+            System.out.println(this.name + " left the spaceship");
+            this.currentSpaceship = null;
         }
+    }
+
+    public Spaceship getCurrentSpaceship() {
+        return currentSpaceship;
+    }
+
+    public void shout (){
+        System.out.println(this.name + " is shouting");
+        // Character can interact with spaceship based on state
+        if (currentSpaceship != null && state == CharacterState.TERRIFIED) {
+            System.out.println("The terrified shout echoes through the ship!");
+        }
+    }
+
+    public void shoot(){
+        System.out.println(this.name + " shoots piu piu");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public CharacterState getState() {
+        return state;
     }
 
     public void becomeTerrified() {
         this.state = CharacterState.TERRIFIED;
-        actionLog.add(name + " became terrified");
+        System.out.println(this.name + " is terrified");
+
+        // Terrified character affects the spaceship
+        if (currentSpaceship != null) {
+            currentSpaceship.handleTerrifiedCharacter(this);
+        }
     }
 
     public void becomeDesperate() {
         this.state = CharacterState.DESPERATE;
-        actionLog.add(name + " became desperate");
-    }
+        System.out.println(name + " became desperate");
 
-    public void setBeingPulled(boolean beingPulled, Character puller) {
-        this.isBeingPulled = beingPulled;
-        this.pulledBy = puller;
-        if (beingPulled) {
-            actionLog.add(name + " is now being pulled by " + puller.getName());
+        // Desperate character affects the spaceship
+        if (currentSpaceship != null) {
+            currentSpaceship.handleDesperateCharacter(this);
         }
     }
-
-    public CharacterState getState() { return state; }
-    public String getName() { return name; }
-    public List<String> getActionLog() { return actionLog; }
 }
