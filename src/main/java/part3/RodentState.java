@@ -1,4 +1,5 @@
 package part3;
 
-public class RodentState {
+enum RodentState {
+    APPROACHING, OVERHEAD, HYPNOTIZING
 }

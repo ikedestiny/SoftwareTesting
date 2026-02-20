@@ -1,4 +1,6 @@
 package part3;
 
-public enum CharacterState {
+
+enum CharacterState {
+    NORMAL, HYPNOTIZED, TERRIFIED, DESPERATE, STRUGGLING
 }

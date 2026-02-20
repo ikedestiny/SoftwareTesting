@@ -1,4 +1,5 @@
 package part3;
 
-public enum DoorState {
+enum DoorState {
+    LOCKED, BEING_OPENED, OPEN
 }
