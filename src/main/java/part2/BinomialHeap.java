@@ -27,7 +27,13 @@ class BinomialHeap {
     }
 
     public boolean isEmpty() {
-        return min_node == null;
+        if(min_node == null) {
+            logger.trace("Куча пуста, минимальный узел: {}", min_node);
+            return true;
+        } else {
+            logger.trace("Куча не пуста, минимальный узел: {}", min_node);
+            return false;
+        }
     }
 
     public BHNode insert(int value) {
@@ -201,6 +207,9 @@ class BinomialHeap {
     }
 
     public int getMin() {
+        if(min_node == null) {
+            logger.trace("min_node = {}, будет выброшен NPE", min_node);
+        }
         return min_node.getValue();
     }
 

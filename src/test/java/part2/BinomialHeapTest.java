@@ -24,6 +24,7 @@ class BinomialHeapTest {
     @Test
     @DisplayName("Test 1: trying to get minimal element in empty heap")
     public void testGetMinInEmpty(){
+        assertEquals(0, heap.size());
         assertTrue(heap.isEmpty());
         assertThrows(NullPointerException.class, heap::getMin);
     }
