@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-class BinominalHeapTest {
+class BinomialHeapTest {
 
-    private BinominalHeap heap;
+    private BinomialHeap heap;
 
     @BeforeEach
     public void setUp() {
-        heap = new BinominalHeap(); // init new BinomHeap
+        heap = new BinomialHeap(); // init new BinomHeap
     }
 
     @Test
@@ -74,7 +74,7 @@ class BinominalHeapTest {
         for(int value : valuesForCurr){
             heap.insert(value);
         }
-        BinominalHeap newHeap = new BinominalHeap();
+        BinomialHeap newHeap = new BinomialHeap();
         for(int value : valuesForNew){
             newHeap.insert(value);
         }

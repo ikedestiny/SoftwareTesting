@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-class BinominalHeap {
-    private static final Logger logger = LogManager.getLogger(BinominalHeap.class);
+class BinomialHeap {
+    private static final Logger logger = LogManager.getLogger(BinomialHeap.class);
     private List<BHNode> trees;
     private BHNode min_node;
     private int count;
@@ -19,8 +19,8 @@ class BinominalHeap {
     public int getCount() { return count; }
     public void setCount(int count) { this.count = count; }
 
-    public BinominalHeap() {
-        logger.trace("Вход в конструктор BinominalHeap");
+    public BinomialHeap() {
+        logger.trace("Вход в конструктор BinomialHeap");
         this.trees = new ArrayList<>();
         this.min_node = null;
         this.count = 0;
@@ -33,7 +33,7 @@ class BinominalHeap {
     public BHNode insert(int value) {
         logger.trace("Вход в insert с value = {}", value);
         BHNode node = new BHNode(value);
-        BinominalHeap heap = new BinominalHeap();
+        BinomialHeap heap = new BinomialHeap();
         heap.getTrees().add(node);
         heap.setCount(heap.getCount() + 1);
         merge(heap);
@@ -41,7 +41,7 @@ class BinominalHeap {
         return node;
     }
 
-    public void merge(BinominalHeap other_heap) {
+    public void merge(BinomialHeap other_heap) {
         logger.trace("Вход в merge, размер текущей кучи = {}, размер другой кучи = {}", size(), other_heap.size());
         getTrees().addAll(other_heap.getTrees());
         setCount(getCount() + other_heap.getCount());
