@@ -62,7 +62,7 @@ class BinomialHeapTest {
     static Stream<Arguments> insertionTestData() {
         return Stream.of(
             Arguments.of(List.of(5), 5),
-            Arguments.of(List.of(3, 1, 4), 1),
+            Arguments.of(List.of(3, 3, 4), 3),
             Arguments.of(List.of(10, 20, 5, 15), 5),
             Arguments.of(List.of(-1, -5, 0), -5)
         );
