@@ -15,6 +15,9 @@ public class Character {
     }
 
     public void board(Spaceship spaceship) {
+        if (this.getCurrentSpaceship()!= null){
+            this.leaveSpaceship();
+        }
         if (spaceship.addCharacter(this)) {  // Add character to spaceship
             this.currentSpaceship = spaceship;  // Set reference to spaceship
             System.out.println(this.name + " boarded the spaceship");

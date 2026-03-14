@@ -123,11 +123,7 @@ class SpaceshipCharacterTest {
         // Try to board second ship
         alice.board(ship2);
 
-        // Alice should still be on first ship (implementation dependent)
-        // Currently, this would add her to both ships - we need to fix this
-
-        // Let's fix by updating Character.board method to leave current ship first
-    }
+  }
 
     @Test
     @DisplayName("Test Ship Turn On")
